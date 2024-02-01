@@ -62,13 +62,13 @@ export class AuthService {
          // verify if email already exists
          const foundUser = await this.prisma.user.findUnique({ where: { email } })
          if(!foundUser) {
-             throw new BadRequestException('invalid email or password')
+             throw new BadRequestException('Invalid email or password')
          }
 
         //verify if password match with email
         const isMatch = await this.comparePass(password, foundUser.hashedPassword)
         if(!isMatch){
-            throw new BadRequestException('invalid email or password')
+            throw new BadRequestException('Invalid email or password')
         }
 
         //sign jwt
@@ -79,7 +79,6 @@ export class AuthService {
         }
         
         //send response to client
-        
         return res.cookie('token', token).send({message: 'Admin logged successfully'})
     }
 
