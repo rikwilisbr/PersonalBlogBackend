@@ -9,16 +9,14 @@ import { AuthGuard } from 'src/auth/auth.guard';
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
-  @UseGuards(AuthGuard)
   @Get('/')
   getPosts(){
     return this.postsService.getPosts()
   }
 
-  @UseGuards(AuthGuard)
-  @Get(':id')
-  getPost(@Param('id') id: string){
-    return this.postsService.getPost(id)
+  @Get(':title')
+  getPost(@Param('title') title: string){
+    return this.postsService.getPost(title)
   }
 
   @UseGuards(AuthGuard)
@@ -28,9 +26,9 @@ export class PostsController {
   }
 
   @UseGuards(AuthGuard)
-  @Put('edit')
-  editPost(@Body() dto: PostsDto){
-    return this.postsService.editPost(dto)
+  @Put('edit/:title')
+  editPost(@Body() dto: PostsDto, @Param('title') title:string ){
+    return this.postsService.editPost(dto, title)
   }
 
   @UseGuards(AuthGuard)

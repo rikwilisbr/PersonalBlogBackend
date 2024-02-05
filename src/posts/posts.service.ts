@@ -12,8 +12,8 @@ type PostTypes = {
 @Injectable()
 export class PostsService {
     constructor(private prisma: PrismaService) {}
-    async getPost(id: string){
-        const foundPost = await this.prisma.post.findUnique({where: {id: id}})
+    async getPost(title: string){
+        const foundPost = await this.prisma.post.findFirst({where:{title: title}})
         if(foundPost){
             return {
                 success: true,
@@ -86,20 +86,20 @@ export class PostsService {
         }
     }
 
-    async editPost(dto: PostsDto){
-        const {id, title, description, markdown} = dto
+    async editPost(dto: PostsDto, titleParam: string){
+        const {title, description, markdown} = dto
         const payload = {
             title,
             description,
             markdown
         }
 
-        const foundPost = await this.prisma.post.findUnique({where: {id: id}})
-
+        const foundPost = await this.prisma.post.findFirst({where: {title: titleParam}})
+        
         if(!foundPost){
             return {success:false, message:'Post not found'}
         }
-
+        const id = foundPost.id
         const updatedPost = await this.prisma.post.update({where: {id: id},data: payload})
         return {
             success: true,
