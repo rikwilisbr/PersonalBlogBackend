@@ -72,15 +72,12 @@ export class PostsService {
                 markdown
             };
             
-            
             await this.prisma.post.create({
                 data: payload
             });
     
-            // Optionally, you may return something meaningful
             return { success: true, message: 'Post created successfully' };
         } catch (error) {
-            // Handle the error appropriately (e.g., log, throw, or return an error response)
             console.error(error);
             throw new Error('Failed to create post');
         }

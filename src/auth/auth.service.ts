@@ -79,7 +79,7 @@ export class AuthService {
         }
         
         //send response to client
-        return res.cookie('token', token).send({message: 'Admin logged successfully'})
+        return res.cookie('token', token, { httpOnly: true }).send({message: 'Admin logged successfully'})
     }
 
     async logout(req: Request, res: Response) {
