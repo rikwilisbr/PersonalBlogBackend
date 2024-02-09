@@ -19,6 +19,11 @@ export class PostsController {
     return this.postsService.getPost(title)
   }
 
+  @Get('tag/:tag')
+  getPostByTag(@Param('tag') tag: string){
+    return this.postsService.getPostByTag(tag)
+  }
+
   @UseGuards(AuthGuard)
   @Post('new')
   newPost(@Body() dto: PostsDto){

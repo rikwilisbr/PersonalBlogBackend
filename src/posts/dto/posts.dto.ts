@@ -15,4 +15,8 @@ export class PostsDto {
   @IsNotEmpty()
   @IsString()
   public markdown: string;
+
+  @IsNotEmpty()
+  @IsString()
+  public tags: string;
 }
