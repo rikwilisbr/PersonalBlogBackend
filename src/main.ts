@@ -12,7 +12,7 @@ async function bootstrap() {
   app.use(cookieParser());
 
   const corsOptions: CorsOptions = {
-    origin: 'http://localhost:3000', // Replace with the origin of your front-end application
+    origin: process.env.CORS_WHITELIST,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
