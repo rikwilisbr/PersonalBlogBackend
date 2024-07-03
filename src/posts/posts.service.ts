@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { PrismaService } from 'prisma/prisma.service';
 import { PostsDto } from './dto/posts.dto';
 import TimestampToDate from 'src/utils/convertTimeStamps';
 import SendEmails from 'src/utils/sendEmails';
