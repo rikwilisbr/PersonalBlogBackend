@@ -11,11 +11,11 @@ async function bootstrap() {
 
   app.use(cookieParser());
 
-  const ORGIN_URL = process.env.ORGIN_URL
+  const ORIGIN_URL = process.env.ORIGIN_URL
   const ENV = process.env.ENV
 
   const corsOptions: CorsOptions = {
-    origin: ENV === "PRODUCTION" ? ORGIN_URL : "http://localhost:3000",
+    origin: ENV === "PRODUCTION" ? ORIGIN_URL : "http://localhost:3000",
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
